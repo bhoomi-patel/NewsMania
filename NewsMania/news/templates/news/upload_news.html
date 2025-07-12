@@ -1,18 +1,39 @@
 {% extends 'news/base.html' %}
 {% block content %}
 
-<h2 class="text-3xl font-bold mb-6 text-blue-700">Upload News Article</h2>
+<h2 class="text-3xl font-bold mb-6 text-gray-800 text-center">Upload News Article</h2>
 
-<form method="POST" enctype="multipart/form-data" class="bg-white p-6 rounded shadow max-w-lg mx-auto space-y-4">
+<form method="POST" enctype="multipart/form-data" class="bg-white p-6 rounded shadow max-w-lg mx-auto space-y-6">
   {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit" class="w-full px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-300">
+
+  <div>
+    <label for="id_title" class="block font-semibold mb-1 text-gray-700">Title</label>
+    {{ form.title }}
+  </div>
+
+  <div>
+    <label for="id_content" class="block font-semibold mb-1 text-gray-700">Content</label>
+    {{ form.content }}
+  </div>
+
+  <div>
+    <label for="id_category" class="block font-semibold mb-1 text-gray-700">Category</label>
+    {{ form.category }}
+  </div>
+
+  <div>
+    <label for="id_image" class="block font-semibold mb-1 text-gray-700">Image</label>
+    {{ form.image }}
+  </div>
+
+  <button type="submit" class="w-full px-6 py-3 bg-green-600 text-white rounded hover:bg-green-700 transition duration-300 font-semibold text-lg">
     Post News
   </button>
 </form>
 
-<p class="mt-6 text-center">
+<p class="mt-6 text-center text-gray-600">
   <a href="/" class="text-blue-500 hover:underline">← Back to Home</a>
 </p>
 
 {% endblock %}
+
