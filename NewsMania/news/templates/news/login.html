@@ -1,0 +1,35 @@
+{% extends 'news/base.html' %}
+{% block content %}
+
+<div class="bg-white shadow p-6 rounded max-w-md mx-auto mt-10">
+  <h2 class="text-3xl font-bold mb-6 text-center text-blue-700">Login to News Mania</h2>
+
+  <form method="post" class="space-y-4">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <style>
+      input[type="text"], input[type="password"], input[type="email"] {
+        border: none;
+        border-bottom: 2px solid #3b82f6; /* Tailwind blue-500 */
+        padding: 8px 4px;
+        width: 100%;
+        outline: none;
+        font-size: 1rem;
+      }
+      input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus {
+        border-bottom-color: #2563eb; /* Tailwind blue-600 */
+      }
+    </style>
+
+    <button type="submit" class="w-full bg-blue-600 text-white px-4 py-3 rounded hover:bg-blue-700 transition duration-300">
+      Log In
+    </button>
+  </form>
+
+  <p class="mt-6 text-center text-gray-600">
+    <a href="/" class="text-blue-500 hover:underline">← Back to Home</a>
+  </p>
+</div>
+
+{% endblock %}

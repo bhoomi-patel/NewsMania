@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>News Mania</title>
+    <!-- ✅ Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900 min-h-screen">
+
+    <div class="max-w-5xl mx-auto p-4">
+        <header class="flex justify-between items-center mb-6">
+            <h1 class="text-4xl font-bold text-blue-700 flex items-center space-x-2">
+                <span>📰</span>
+                <span>News Mania</span>
+            </h1>
+            <nav>
+                <ul class="flex space-x-4 text-blue-600 font-semibold">
+                    <li><a href="{% url 'home' %}" class="hover:underline">Home</a></li>
+                    {% for category in all_categories %}
+                    <li><a href="{% url 'filter_by_category' category.id %}" class="hover:underline">{{ category.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </nav>
+            <div class="flex items-center space-x-4">
+                {% if user.is_authenticated %}
+                <span class="mr-4">Hello, <strong>{{ user.username }}</strong></span>
+                <a href="{% url 'upload_news' %}" class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 mr-4">Add News</a>
+                <form method="post" action="{% url 'logout' %}" class="inline">
+                    {% csrf_token %}
+                    <button class="text-red-500 hover:underline">Logout</button>
+                </form>
+                {% else %}
+                <a href="{% url 'login' %}" class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 mr-4">Login</a>
+                <a href="{% url 'login' %}" class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600">Add News</a>
+                {% endif %}
+            </div>
+        </header>
+
+        <!-- ✅ Page content -->
+        {% block content %}{% endblock %}
+    </div>
+
+</body>
+</html>
